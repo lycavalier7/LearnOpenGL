@@ -1,0 +1,10 @@
+^D:\LEARN\PROGRAM\LEARNOPENGL\CMAKELISTS.TXT
+setlocal
+D:\application\cmake\bin\cmake.exe -SD:/Learn/Program/learnOpenGL -BD:/Learn/Program/learnOpenGL/build --check-stamp-file D:/Learn/Program/learnOpenGL/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

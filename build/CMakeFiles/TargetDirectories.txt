@@ -1,0 +1,4 @@
+D:/Learn/Program/learnOpenGL/build/CMakeFiles/GLAD.dir
+D:/Learn/Program/learnOpenGL/build/CMakeFiles/1.getting_started__1.1.hello_window.dir
+D:/Learn/Program/learnOpenGL/build/CMakeFiles/ALL_BUILD.dir
+D:/Learn/Program/learnOpenGL/build/CMakeFiles/ZERO_CHECK.dir
