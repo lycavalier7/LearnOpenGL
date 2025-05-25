@@ -1,5 +1,5 @@
-cmake_minimum_required (VERSION 3.0)
-cmake_policy(VERSION 3.0)
+cmake_minimum_required (VERSION 3.5)
+cmake_policy(VERSION 3.5)
 
 project(LearnOpenGL)
 
@@ -80,9 +80,12 @@ set(1.getting_started
     2.3.hello_triangle_exercise1
     2.4.hello_triangle_exercise2
     2.5.hello_triangle_exercise3
-    #3.1.shaders_uniform
-    #3.2.shaders_interpolation
-    #3.3.shaders_class
+    3.1.shaders_uniform
+    3.2.shaders_interpolation
+    3.3.shaders_class
+	3.4.shaders_exercise1
+	3.5.shaders_exercise2
+	3.6.shaders_exercise3
     #4.1.textures
     #4.2.textures_combined
     #4.4.textures_exercise2
@@ -189,8 +192,8 @@ set(1.getting_started
 #	8.guest/2022/7.area_lights/2.multiple_area_lights
 #)
 
-# configure_file(configuration/root_directory.h.in configuration/root_directory.h)
-# include_directories(${CMAKE_BINARY_DIR}/configuration)
+configure_file(configuration/root_directory.h.in configuration/root_directory.h)
+include_directories(${CMAKE_BINARY_DIR}/configuration)
 
 # first create relevant static libraries required for other projects
 # add_library(STB_IMAGE "src/stb_image.cpp")
@@ -253,7 +256,7 @@ function(create_project_from_sources chapter demo)
         if(WIN32)
             # configure_file(${SHADER} "test")
             add_custom_command(TARGET ${NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SHADER} $<TARGET_FILE_DIR:${NAME}>)
-			add_custom_command(TARGET ${NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DLLS} $<TARGET_FILE_DIR:${NAME}>)
+			# add_custom_command(TARGET ${NAME} PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DLLS} $<TARGET_FILE_DIR:${NAME}>)
         elseif(UNIX AND NOT APPLE)
             file(COPY ${SHADER} DESTINATION ${CMAKE_SOURCE_DIR}/bin/${chapter})
         elseif(APPLE)
@@ -263,9 +266,9 @@ function(create_project_from_sources chapter demo)
         endif(WIN32)
     endforeach(SHADER)
     # if compiling for visual studio, also use configure file for each project (specifically to set up working directory)
-    # if(MSVC)
-    #    configure_file(${CMAKE_SOURCE_DIR}/configuration/visualstudio.vcxproj.user.in ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.vcxproj.user @ONLY)
-    # endif(MSVC)
+    if(MSVC)
+        configure_file(${CMAKE_SOURCE_DIR}/configuration/visualstudio.vcxproj.user.in ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.vcxproj.user @ONLY)
+    endif(MSVC)
 endfunction()
 
 # then create a project file per tutorial
