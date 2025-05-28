@@ -20,8 +20,8 @@ endif(WIN32)
 link_directories(${CMAKE_SOURCE_DIR}/lib)
 
 # find the required packages
-# find_package(GLM REQUIRED)
-# message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
+find_package(GLM REQUIRED)
+message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
 find_package(GLFW3 REQUIRED)
 message(STATUS "Found GLFW3 in ${GLFW3_INCLUDE_DIR}")
 # find_package(ASSIMP REQUIRED)
@@ -92,8 +92,9 @@ set(1.getting_started
     4.4.textures_exercise2
     4.5.textures_exercise3
     4.6.textures_exercise4
-    #5.1.transformations
-    #5.2.transformations_exercise2
+    5.1.transformations
+	5.2.transformations_exercise1
+    5.3.transformations_exercise2
     #6.1.coordinate_systems
     #6.2.coordinate_systems_depth
     #6.3.coordinate_systems_multiple
