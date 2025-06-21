@@ -55,7 +55,7 @@ public:
 		glAttachShader(programId, vertex);
 		glAttachShader(programId, fragment);
 		glLinkProgram(programId);
-		CheckProgramError(fragment, ProgramType::Program);
+		CheckProgramError(programId, ProgramType::Program);
 
 		glDeleteShader(vertex);
 		glDeleteShader(fragment);
@@ -65,6 +65,19 @@ public:
 	{
 		glUseProgram(programId);
 	}
+
+	void SetInt(std::string uniformName, int32_t value)
+	{
+		uint32_t loction = glGetUniformLocation(programId, uniformName.c_str());
+		glUniform1i(loction, value);
+	}
+
+	void SetMat4(std::string uniformName, float* value)
+	{
+		uint32_t location = glGetUniformLocation(programId, uniformName.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, value);
+	}
+
 private:
 	enum class ProgramType
 	{
